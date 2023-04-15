@@ -1,3 +1,7 @@
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
+import model.Person;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,7 +15,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         // Working With Date
 //        workingWithDate();
@@ -30,9 +34,19 @@ public class Main {
     //Parse JSON
     // google-gson link
     //https://github.com/google/gson
-    static void parseJSON() {
+    static void parseJSON() throws IOException {
         String fileName = "files/data.json";
 
+        Gson gson = new Gson();
+        try (
+                FileReader fileReader = new FileReader(fileName);
+                JsonReader reader = new JsonReader(fileReader);
+        ){
+            Person[] data = gson.fromJson(reader, Person[].class);
+            for (Person person : data) {
+                System.out.println(person);
+            }
+        }
     }
 
 

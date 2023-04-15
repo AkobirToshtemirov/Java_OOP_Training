@@ -1,15 +1,12 @@
-[{
-  "Data": [
-    {
-      "name": "John Black",
-      "age": 12,
-      "hobby": "tennis"
-    },
-    {
-      "name": "Bob Black",
-      "age": 15,
-      "hobby": "football"
-    }
-  ]
-}
+[
+  {
+    "name": "John Black",
+    "age": 12,
+    "hobby": "tennis"
+  },
+  {
+    "name": "Bob Black",
+    "age": 15,
+    "hobby": "football"
+  }
 ]
