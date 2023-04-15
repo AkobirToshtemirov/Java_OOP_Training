@@ -20,9 +20,21 @@ public class Main {
 //        copyFile();
 
         //Copy files with Path and Files classes
-        copyFileWithPath();
+//        copyFileWithPath();
+
+        //Parse JSON
+        parseJSON();
 
     }
+
+    //Parse JSON
+    // google-gson link
+    //https://github.com/google/gson
+    static void parseJSON() {
+        String fileName = "files/data.json";
+
+    }
+
 
     //Copy files with Path and Files classes
     static void copyFileWithPath() {
