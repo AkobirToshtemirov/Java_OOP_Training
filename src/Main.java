@@ -1,3 +1,8 @@
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -8,6 +13,60 @@ import java.util.GregorianCalendar;
 public class Main {
     public static void main(String[] args) {
 
+        // Working With Date
+//        workingWithDate();
+
+        // Copying files with readers and buffers
+//        copyFile();
+
+        //Copy files with Path and Files classes
+        copyFileWithPath();
+
+    }
+
+    //Copy files with Path and Files classes
+    static void copyFileWithPath() {
+        Path sourceFile = Paths.get("files", "loremipsum.txt");
+        Path targetFile = Paths.get("files", "target1.txt");
+
+        try {
+            Files.copy(sourceFile, targetFile, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
+    // Copying files with readers and buffers
+    static void copyFile() {
+        String sourceFile = "files/loremipsum.txt";
+
+        String targetFile = "files/target.txt";
+
+        try (
+                FileReader fileReader = new FileReader(sourceFile);
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+                FileWriter fileWriter = new FileWriter(targetFile);
+                ) {
+
+            while(true) {
+                String line = bufferedReader.readLine();
+                if(line == null) {
+                    break;
+                }
+
+                fileWriter.write(line + "\n");
+                System.out.println("line: " + line);
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // Working With Date
+    static void workingWithDate() {
         // Current time:
         Date now = new Date();
         System.out.println(now);
@@ -33,6 +92,5 @@ public class Main {
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("M/d/yyyy");
         System.out.println(dtf.format(ld));
-
     }
 }
