@@ -133,7 +133,7 @@ public class Main {
 
         int i = 0;
         int count = 0;
-        int greatestCandy = 0
+        int greatestCandy = 0;
         while(i < candies.length){
             greatestCandy = candies[i] + extraCandies;
             for(int j = 0; j < candies.length; j++) {
