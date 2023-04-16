@@ -1,7 +1,7 @@
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import model.Person;
-
+import java.util.List;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,6 +11,7 @@ import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -26,8 +27,13 @@ public class Main {
         //Copy files with Path and Files classes
 //        copyFileWithPath();
 
+        int[] arr = {2,3,5,1,3};
+        List<Boolean> res = kidsWithCandies(arr, 3);
+        System.out.println(res);
+
+
         //Parse JSON
-        parseJSON();
+//        parseJSON();
 
     }
 
@@ -118,5 +124,27 @@ public class Main {
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("M/d/yyyy");
         System.out.println(dtf.format(ld));
+    }
+
+
+
+    public static List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+        List<Boolean> res = new ArrayList<>();
+
+        int i = 0;
+        int count = 0;
+        int greatestCandy = 0
+        while(i < candies.length){
+            greatestCandy = candies[i] + extraCandies;
+            for(int j = 0; j < candies.length; j++) {
+                if(greatestCandy >= candies[j]) count++;
+            }
+            if(count >= candies.length){
+                res.add(true);
+            } else res.add(false);
+            count = 0;
+            i++;
+        }
+        return res;
     }
 }
